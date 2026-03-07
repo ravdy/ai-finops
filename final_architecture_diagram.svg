@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#990011"/>
+      <stop offset="100%" style="stop-color:#B31B1B"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2F3C7E"/>
+      <stop offset="100%" style="stop-color:#1A2456"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748B"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#990011"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#FCF6F5"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#990011" text-anchor="middle">Using AI to Monitor AI</text>
+  <text x="600" y="68" font-family="Arial, sans-serif" font-size="16" fill="#2F3C7E" text-anchor="middle">FinOps for the Agent Era</text>
+  
+  <!-- LEFT SIDE: Your AI Agents -->
+  <rect x="30" y="110" width="220" height="340" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="30" y="110" width="220" height="50" rx="12" fill="url(#navyGrad)"/>
+  <text x="140" y="142" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">🤖 Your AI Agents</text>
+  
+  <!-- Individual agents -->
+  <rect x="45" y="175" width="190" height="48" rx="6" fill="#EEF2FF" stroke="#6366F1" stroke-width="1.5"/>
+  <text x="140" y="196" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4338CA" text-anchor="middle">Code Review Agent</text>
+  <text x="140" y="212" font-family="Arial, sans-serif" font-size="9" fill="#6366F1" text-anchor="middle">~50 calls/day • Sonnet</text>
+  
+  <rect x="45" y="233" width="190" height="48" rx="6" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="140" y="254" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#B45309" text-anchor="middle">Incident Response Agent</text>
+  <text x="140" y="270" font-family="Arial, sans-serif" font-size="9" fill="#D97706" text-anchor="middle">~180 calls/day • Sonnet</text>
+  
+  <rect x="45" y="291" width="190" height="48" rx="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5"/>
+  <text x="140" y="312" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">Docs Generator Agent</text>
+  <text x="140" y="328" font-family="Arial, sans-serif" font-size="9" fill="#059669" text-anchor="middle">~25 calls/day • Opus ⚠️</text>
+  
+  <rect x="45" y="349" width="190" height="48" rx="6" fill="#FDF2F8" stroke="#EC4899" stroke-width="1.5"/>
+  <text x="140" y="370" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#BE185D" text-anchor="middle">Customer Support Agent</text>
+  <text x="140" y="386" font-family="Arial, sans-serif" font-size="9" fill="#DB2777" text-anchor="middle">~500 calls/day • Haiku ✓</text>
+  
+  <rect x="45" y="407" width="190" height="30" rx="6" fill="#F1F5F9" stroke="#94A3B8" stroke-dasharray="4,2"/>
+  <text x="140" y="427" font-family="Arial, sans-serif" font-size="10" fill="#64748B" text-anchor="middle">+ more agents...</text>
+  
+  <!-- Arrow from agents to wrapper -->
+  <line x1="250" y1="280" x2="310" y2="280" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="280" y="268" font-family="Arial, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">API calls</text>
+  
+  <!-- CENTER TOP: Cost Tracking Wrapper -->
+  <rect x="320" y="150" width="300" height="200" rx="12" fill="#FFFFFF" stroke="#990011" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="320" y="150" width="300" height="50" rx="12" fill="url(#headerGrad)"/>
+  <text x="470" y="182" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">📊 Cost Tracking Wrapper</text>
+  
+  <!-- Wrapper internals -->
+  <rect x="335" y="215" width="270" height="50" rx="6" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="470" y="238" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#991B1B" text-anchor="middle">Token Counter</text>
+  <text x="470" y="255" font-family="Arial, sans-serif" font-size="9" fill="#B91C1C" text-anchor="middle">Input tokens • Output tokens • Cost • Model</text>
+  
+  <rect x="335" y="275" width="270" height="50" rx="6" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="470" y="298" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1D4ED8" text-anchor="middle">Metadata Enrichment</text>
+  <text x="470" y="315" font-family="Arial, sans-serif" font-size="9" fill="#2563EB" text-anchor="middle">Team • Feature • Agent ID • Timestamp</text>
+  
+  <!-- Arrow from wrapper to LLM APIs -->
+  <line x1="620" y1="250" x2="680" y2="250" stroke="#64748B" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- RIGHT: LLM APIs -->
+  <rect x="690" y="170" width="170" height="160" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="690" y="170" width="170" height="45" rx="12" fill="#64748B"/>
+  <text x="775" y="198" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">☁️ LLM APIs</text>
+  
+  <rect x="705" y="228" width="140" height="32" rx="4" fill="#F5F5DC" stroke="#D4A574"/>
+  <text x="775" y="250" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#8B7355" text-anchor="middle">Anthropic Claude</text>
+  
+  <rect x="705" y="270" width="140" height="32" rx="4" fill="#E8F5E9" stroke="#4CAF50"/>
+  <text x="775" y="292" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2E7D32" text-anchor="middle">OpenAI GPT</text>
+  
+  <!-- Arrow from wrapper down to database -->
+  <line x1="470" y1="350" x2="470" y2="420" stroke="#990011" stroke-width="3" marker-end="url(#arrowRed)"/>
+  <text x="530" y="390" font-family="Arial, sans-serif" font-size="10" fill="#990011" font-weight="bold">Log every request</text>
+  
+  <!-- CENTER: Database -->
+  <rect x="320" y="430" width="300" height="80" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="320" y="430" width="300" height="40" rx="12" fill="#475569"/>
+  <text x="470" y="456" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">💾 Time-Series Database</text>
+  <text x="470" y="490" font-family="Arial, sans-serif" font-size="10" fill="#334155" text-anchor="middle">Token usage • Costs • Attribution • Trends</text>
+  
+  <!-- Arrows from database to outputs -->
+  <line x1="370" y1="510" x2="200" y2="590" stroke="#64748B" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="470" y1="510" x2="470" y2="590" stroke="#990011" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <line x1="570" y1="510" x2="740" y2="590" stroke="#64748B" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  
+  <!-- BOTTOM ROW: Outputs -->
+  
+  <!-- Dashboards -->
+  <rect x="70" y="600" width="200" height="130" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="70" y="600" width="200" height="38" rx="10" fill="#2F3C7E"/>
+  <text x="170" y="625" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">📈 Dashboards</text>
+  
+  <text x="90" y="660" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Cost trends over time</text>
+  <text x="90" y="680" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Team breakdowns</text>
+  <text x="90" y="700" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Model usage</text>
+  <text x="90" y="720" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Agent comparison</text>
+  
+  <!-- AI Monitoring Agent (MAIN FOCUS) -->
+  <rect x="310" y="600" width="320" height="160" rx="12" fill="#FFFFFF" stroke="#990011" stroke-width="4" filter="url(#shadow)"/>
+  <rect x="310" y="600" width="320" height="45" rx="12" fill="url(#headerGrad)"/>
+  <text x="470" y="628" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">🔍 AI Monitoring Agent</text>
+  
+  <text x="330" y="670" font-family="Arial, sans-serif" font-size="11" fill="#334155" font-style="italic">"Why did costs spike Thursday?"</text>
+  <text x="330" y="695" font-family="Arial, sans-serif" font-size="11" fill="#334155" font-style="italic">"Which agent costs the most?"</text>
+  <text x="330" y="720" font-family="Arial, sans-serif" font-size="11" fill="#334155" font-style="italic">"How can we reduce spend 40%?"</text>
+  
+  <text x="470" y="750" font-family="Arial, sans-serif" font-size="10" fill="#990011" font-weight="bold" text-anchor="middle">🤖 AI watching your AI — natural language queries</text>
+  
+  <!-- Alerts -->
+  <rect x="670" y="600" width="200" height="130" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="670" y="600" width="200" height="38" rx="10" fill="#DC2626"/>
+  <text x="770" y="625" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">🚨 Budget Alerts</text>
+  
+  <text x="690" y="660" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Threshold warnings</text>
+  <text x="690" y="680" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Anomaly detection</text>
+  <text x="690" y="700" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Auto-throttling</text>
+  <text x="690" y="720" font-family="Arial, sans-serif" font-size="10" fill="#334155">• Slack notifications</text>
+  
+  <!-- Right side boxes -->
+  
+  <!-- Anti-patterns -->
+  <rect x="900" y="110" width="270" height="200" rx="12" fill="#FFFFFF" stroke="#DC2626" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="900" y="110" width="270" height="40" rx="12" fill="#DC2626"/>
+  <text x="1035" y="136" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">⚠️ 5 Anti-Patterns</text>
+  
+  <text x="920" y="172" font-family="Arial, sans-serif" font-size="10" fill="#7F1D1D">1. Context Cannon (load everything)</text>
+  <text x="920" y="194" font-family="Arial, sans-serif" font-size="10" fill="#7F1D1D">2. Retry Death Spiral</text>
+  <text x="920" y="216" font-family="Arial, sans-serif" font-size="10" fill="#7F1D1D">3. Model Mismatch (Opus for simple)</text>
+  <text x="920" y="238" font-family="Arial, sans-serif" font-size="10" fill="#7F1D1D">4. Chatty Agent (too many calls)</text>
+  <text x="920" y="260" font-family="Arial, sans-serif" font-size="10" fill="#7F1D1D">5. No Monitoring 👈 We fix this!</text>
+  
+  <!-- Optimization strategies -->
+  <rect x="900" y="330" width="270" height="180" rx="12" fill="#FFFFFF" stroke="#059669" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="900" y="330" width="270" height="40" rx="12" fill="#059669"/>
+  <text x="1035" y="356" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">💰 Optimization Strategies</text>
+  
+  <text x="920" y="395" font-family="Arial, sans-serif" font-size="10" fill="#047857">✓ Prompt Caching → 20-40% savings</text>
+  <text x="920" y="420" font-family="Arial, sans-serif" font-size="10" fill="#047857">✓ Model Tiering → 40-70% savings</text>
+  <text x="920" y="445" font-family="Arial, sans-serif" font-size="10" fill="#047857">✓ Diff-Only Analysis → 60-80% savings</text>
+  <text x="920" y="470" font-family="Arial, sans-serif" font-size="10" fill="#047857">✓ Request Batching → 15-25% savings</text>
+  <text x="920" y="495" font-family="Arial, sans-serif" font-size="10" fill="#065F46" font-weight="bold">Combined: 40-70% total reduction</text>
+  
+  <!-- Stats callouts -->
+  <rect x="900" y="530" width="125" height="90" rx="10" fill="#990011" filter="url(#shadow)"/>
+  <text x="962" y="570" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" text-anchor="middle">$10K</text>
+  <text x="962" y="595" font-family="Arial, sans-serif" font-size="10" fill="#FECACA" text-anchor="middle">The weekend</text>
+  <text x="962" y="610" font-family="Arial, sans-serif" font-size="10" fill="#FECACA" text-anchor="middle">that started it all</text>
+  
+  <rect x="1045" y="530" width="125" height="90" rx="10" fill="#2F3C7E" filter="url(#shadow)"/>
+  <text x="1107" y="570" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFFFFF" text-anchor="middle">40%+</text>
+  <text x="1107" y="595" font-family="Arial, sans-serif" font-size="10" fill="#C7D2FE" text-anchor="middle">Savings</text>
+  <text x="1107" y="610" font-family="Arial, sans-serif" font-size="10" fill="#C7D2FE" text-anchor="middle">achievable</text>
+  
+  <!-- Tech Stack -->
+  <rect x="900" y="640" width="270" height="80" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1035" y="668" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">🛠️ Tech Stack</text>
+  <text x="1035" y="692" font-family="Arial, sans-serif" font-size="10" fill="#64748B" text-anchor="middle">LangChain • Claude API • Python</text>
+  <text x="1035" y="710" font-family="Arial, sans-serif" font-size="10" fill="#64748B" text-anchor="middle">Slack Bot • Time-Series DB</text>
+  
+  <!-- Footer -->
+  <rect x="0" y="780" width="1200" height="120" fill="#1A1A2E"/>
+  <text x="600" y="820" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Using AI to Monitor AI: FinOps for the Agent Era</text>
+  <text x="600" y="850" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">CloudX AI Conference • The meta solution to AI cost management</text>
+</svg>
