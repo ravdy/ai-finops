@@ -30,8 +30,16 @@ from typing import Tuple
 
 from dotenv import load_dotenv
 from anthropic import Anthropic
+import time
 
 load_dotenv()
+
+# =============================================================================
+# Retry Configuration (handles API overload errors)
+# =============================================================================
+
+MAX_RETRIES = 3
+RETRY_DELAY = 2  # seconds
 
 # =============================================================================
 # Model Tiering Configuration for THIS AGENT
@@ -508,12 +516,40 @@ AVAILABLE AGENTS TO MONITOR:
 - customer-support-agent (well optimized - uses Haiku, has limits)
 - security-scanner-agent (no limits)
 
+FORMATTING RULES (VERY IMPORTANT - for Slack compatibility):
+- Use *bold* for emphasis (single asterisk, NOT double **)
+- Use simple line breaks between sections
+- Use emojis for visual appeal: 📊 💰 ⚠️ ✅ ❌ 🔧
+- Use simple bullet points with • or -
+- DO NOT use markdown headers (#, ##, ###)
+- DO NOT use markdown tables
+- DO NOT use ** for bold (use single * instead)
+- Keep responses clean and readable
+
+EXAMPLE FORMAT FOR COST SUMMARY:
+
+📊 *Weekly Cost Summary*
+
+Total: $220.26 across 6,282 requests
+
+*By Agent:*
+• docs-generator-agent: $104.82 (48%) ⚠️ Highest
+• incident-response-agent: $41.28 (19%)
+• code-review-agent: $35.88 (16%)
+• security-scanner-agent: $27.83 (13%)
+• customer-support-agent: $10.45 (5%) ✅ Well optimized
+
+*By Model:*
+• Claude Sonnet: $122.95 (56%)
+• Claude Opus: $91.61 (42%) ⚠️ Expensive
+• Claude Haiku: $5.70 (3%) ✅ Cost-effective
+
 FORMAT FOR PROPOSING ACTIONS:
 
-🔧 PROPOSED ACTION: [Name]
-📊 Current State: [What's wrong]
-💰 Estimated Savings: $X/week ($Y/month)
-⚠️ Risk: Low/Medium/High
+🔧 *PROPOSED ACTION:* [Name]
+📊 *Current State:* [What's wrong]
+💰 *Estimated Savings:* $X/week ($Y/month)
+⚠️ *Risk:* Low/Medium/High
 
 Should I proceed? (yes/no)"""
     
@@ -570,6 +606,30 @@ Should I proceed? (yes/no)"""
         result = tool_map.get(name, lambda: {"error": f"Unknown tool: {name}"})()
         return json.dumps(result, indent=2)
     
+    def _call_api_with_retry(self, model, messages):
+        """Call API with automatic retry on overload errors."""
+        for attempt in range(MAX_RETRIES):
+            try:
+                response = self.client.messages.create(
+                    model=model,
+                    max_tokens=2048,
+                    system=self.system_prompt,
+                    tools=self.tools,
+                    messages=messages
+                )
+                return response
+            except Exception as e:
+                error_str = str(e)
+                if "529" in error_str or "overloaded" in error_str.lower():
+                    if attempt < MAX_RETRIES - 1:
+                        print(f"⏳ API overloaded, retrying in {RETRY_DELAY}s... (attempt {attempt + 1}/{MAX_RETRIES})")
+                        time.sleep(RETRY_DELAY * (attempt + 1))  # Exponential backoff
+                    else:
+                        raise Exception("API is currently overloaded. Please try again in a moment.")
+                else:
+                    raise e
+        raise Exception("Max retries exceeded")
+
     def chat(self, user_message: str) -> Tuple[str, str]:
         """
         Process a message and return (response, model_used).
@@ -581,14 +641,8 @@ Should I proceed? (yes/no)"""
         
         self.history.append({"role": "user", "content": user_message})
         
-        # Make API call with selected model
-        response = self.client.messages.create(
-            model=model,
-            max_tokens=2048,
-            system=self.system_prompt,
-            tools=self.tools,
-            messages=self.history
-        )
+        # Make API call with retry logic
+        response = self._call_api_with_retry(model, self.history)
         
         # Track usage stats
         input_tokens = response.usage.input_tokens
@@ -627,14 +681,8 @@ Should I proceed? (yes/no)"""
             
             self.history.append({"role": "user", "content": tool_results})
             
-            # Use Sonnet for processing tool results (need accuracy)
-            response = self.client.messages.create(
-                model=MODELS["complex"],
-                max_tokens=2048,
-                system=self.system_prompt,
-                tools=self.tools,
-                messages=self.history
-            )
+            # Use Sonnet for processing tool results (with retry logic)
+            response = self._call_api_with_retry(MODELS["complex"], self.history)
             
             # Track Sonnet usage
             MODEL_USAGE_STATS["sonnet_calls"] += 1
@@ -694,7 +742,11 @@ def run_slack_bot():
             # Show which model was used (demonstrates tiering!)
             say(f"{response}\n\n_[Model: {model_used}]_")
         except Exception as e:
-            say(f"❌ Error: {str(e)}")
+            error_str = str(e)
+            if "529" in error_str or "overloaded" in error_str.lower():
+                say("⏳ API is temporarily busy. Please try again in a few seconds.")
+            else:
+                say(f"❌ Error: {error_str}")
     
     @app.event("message")
     def handle_dm(event, say):
@@ -714,7 +766,11 @@ def run_slack_bot():
                 response, model_used = agent.chat(text)
                 say(f"{response}\n\n_[Model: {model_used}]_")
             except Exception as e:
-                say(f"❌ Error: {str(e)}")
+                error_str = str(e)
+                if "529" in error_str or "overloaded" in error_str.lower():
+                    say("⏳ API is temporarily busy. Please try again in a few seconds.")
+                else:
+                    say(f"❌ Error: {error_str}")
     
     print("="*60)
     print("⚡ LLM COST MONITOR - WITH MODEL TIERING")
