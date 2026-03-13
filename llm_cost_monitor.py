@@ -1,6 +1,6 @@
 """
-LLM Cost Monitoring Agent - FINAL VERSION WITH MODEL TIERING
-=============================================================
+LLM Cost Monitoring Agent 
+==========================
 This agent demonstrates model tiering in TWO ways:
 1. The agent ITSELF uses tiering (Haiku for simple, Sonnet for complex)
 2. The agent can APPLY tiering to other agents as an action

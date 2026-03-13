@@ -242,6 +242,5 @@ Ravi Shankar
 
 ## 🙏 Credits
 
-- Built with [Anthropic Claude](https://anthropic.com)
-- Slack integration via [slack-bolt](https://slack.dev/bolt-python/)
+- [Anthropic Claude](https://anthropic.com)
 - Presented at CloudX AI Bengaluru 2026
